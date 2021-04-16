@@ -1,4 +1,6 @@
-The HiveMind protocol is currently under heavy development, and design is ongoing. At the moment, we are looking toward a framework where most inter-device and inter-application messages will be defined by a formal message definition, corresponding to an *Action* that a HiveMind device can take.
+The HiveMind protocol is currently under heavy development, and design is ongoing. At the moment, we are looking toward a framework where most inter-device and inter-application messages will be defined by formal protocols, each corresponding to an *Action* that a HiveMind device can take.
+
+These are not as intimidating as they sound. They're basically just another data structure. If you can work with dictionaries, you can work with these. The biggest differences will be that order matters, and data is strictly typed.
 
 ## What is an Action?
 
