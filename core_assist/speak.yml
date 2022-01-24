@@ -1,0 +1,34 @@
+type: speak
+data:
+  utterance: ""
+  # Generated response to be spoken
+  expect_response: False
+  # Boolean indicating if a user response is expected
+  meta: {}
+  # Optional mapping of keyword IDs to values
+  lang: ""
+  # Lowercased BCP 47 Language tag associated with `utterance` (i.e. en-us)
+  speaker:
+  # Optional mapping of response parameters
+    name: ""
+    language: ""
+    gender: ""  # "male"|"female"
+    voice: ""  # Optional
+
+context:
+  client_name: ""
+  # Human-readable name to identify the module capturing this input
+  client: ""
+  # Classification of the input source (api, mobile, browser, microphone)
+  source: ""
+  # Source module name
+  destination: "audio"
+  # Destination module name
+  ident: ""
+  # Unique ID of this user input
+  timing: {}
+  # Optional map of events to timestamps
+  username: ""
+  # Originating user's ID
+  profiles: []
+  # Optional list of user profile data for any users being spoken to
