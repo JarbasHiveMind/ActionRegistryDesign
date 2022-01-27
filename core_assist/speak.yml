@@ -7,73 +7,86 @@ message:
   data:
     utterance:
       type: str
+      repr: str
       required: True
       default:
       description: Generated response to be spoken
     expect_response:
       type: bool
+      repr: bool
       required: True
       default: False
       description: Boolean indicating if a user response is expected
     meta:
       type: dict
+      repr: dict
       required: False
       default:
       description: Optional mapping of keyword IDs to values
     lang:
-      type: str
+      type: lang_long
+      repr: str
       required: True
       default:
       description: Lowercased BCP 47 Language tag associated with `utterance` (i.e. en-us)
     speaker:  # Optional mapping of response parameters
       name:
         type: str
+        repr: str
         required: False
         default:
         description: Name associated with generated response
       language:
-        type: str
+        type: lang_long
+        repr: str
         required: False
         default:
         description: Override language of response sent to the user
       gender:
-        type: str  # "male" or "female"
+        type: gender
+        repr: str  # "male" or "female"
         required: False
         default:
         description: Requested gender for TTS synthesis
       voice:
         type: str
+        repr: str
         required: False
         default:
         description: Requested TTS Voice
   context:
     ident:
       type: str
+      repr: str
       required: True
       default:
       description: Unique ID of this input event
 
-# Schemas overlay the `message` spec to provide additional information that is implementation-specific
-schemas:
+# Revisions overlay the `message` spec to provide additional information
+revisions:
   mycroft:
     context:
       client_name:
         type: str
+        repr: str
         required: True
         default:
         description: Human-readable name to identify the module capturing this input
       client:
         type: str
+        repr: client
         required: True
         default: microphone
         description: Classification of the input source (api, mobile, browser, microphone)
       source:
         type: str
+        repr: str
         required: False
         default:
         description: Optional name of message originating module
       destination:
         type: str
+        repr: str
         required: False
         default: audio
         description: Optional name of message intended target (None broadcasts all)
@@ -82,42 +95,50 @@ schemas:
       client:
         name:
           type: str
+          repr: str
           required: True
           default:
           description: Human-readable name to identify the module capturing this input
         class:
-          type: str
+          type: client
+          repr: str
           required: True
           default: microphone
           description: Classification of the input source (api, mobile, browser, microphone)
         extras:
           type: dict
+          repr: dict
           required: False
           default:
           description: Optional extra parameters related to client originating the interaction
       routing:
         source:
           type: str
+          repr: str
           required: False
           default:
           description: Optional name of message originating module
         destination:
           type: str
+          repr: str
           required: False
           default: audio
           description: Optional name of message intended target (None broadcasts all)
       timing:
         type: dict
+        repr: dict
         required: False
         default:
         description: Optional map of events to timestamps
       username:
         type: str
+        repr: str
         required: True
         default: local
         description: Originating user's ID
       profiles:
-      type: list
-      required: True
-      default:
-      description: List of user profile data for any users being spoken to, including originating user
+        type: list
+        repr: list
+        required: True
+        default:
+        description: List of user profile data for any users being spoken to, including originating user
