@@ -6,7 +6,7 @@ message:
   type: speak
   data:
     utterance:
-      type: str
+      type: str_terminated
       repr: str
       required: True
       default:
@@ -18,7 +18,7 @@ message:
       default: False
       description: Boolean indicating if a user response is expected
     meta:
-      type: dict
+      type: str_16-bit-leading
       repr: dict
       required: False
       default:
@@ -31,7 +31,7 @@ message:
       description: Lowercased BCP 47 Language tag associated with `utterance` (i.e. en-us)
     speaker:  # Optional mapping of response parameters
       name:
-        type: str
+        type: str_4-bit-leading
         repr: str
         required: False
         default:
@@ -49,14 +49,14 @@ message:
         default:
         description: Requested gender for TTS synthesis
       voice:
-        type: str
+        type: str_4-bit-leading
         repr: str
         required: False
         default:
         description: Requested TTS Voice
   context:
     ident:
-      type: str
+      type: str_8-bit-leading
       repr: str
       required: True
       default:
@@ -67,25 +67,25 @@ revisions:
   mycroft:
     context:
       client_name:
-        type: str
+        type: str_8-bit-leading
         repr: str
         required: True
         default:
         description: Human-readable name to identify the module capturing this input
       client:
-        type: str
-        repr: client
+        type: client
+        repr: str
         required: True
         default: microphone
         description: Classification of the input source (api, mobile, browser, microphone)
       source:
-        type: str
+        type: str_8-bit-leading
         repr: str
         required: False
         default:
         description: Optional name of message originating module
       destination:
-        type: str
+        type: str_8-bit-leading
         repr: str
         required: False
         default: audio
@@ -94,7 +94,7 @@ revisions:
     context:
       client:
         name:
-          type: str
+          type: str_8-bit-leading
           repr: str
           required: True
           default:
@@ -106,38 +106,38 @@ revisions:
           default: microphone
           description: Classification of the input source (api, mobile, browser, microphone)
         extras:
-          type: dict
+          type: str_16-bit-leading
           repr: dict
           required: False
           default:
           description: Optional extra parameters related to client originating the interaction
       routing:
         source:
-          type: str
+          type: str_8-bit-leading
           repr: str
           required: False
           default:
           description: Optional name of message originating module
         destination:
-          type: str
+          type: str_8-bit-leading
           repr: str
           required: False
           default: audio
           description: Optional name of message intended target (None broadcasts all)
       timing:
-        type: dict
+        type: str_16-bit-leading
         repr: dict
         required: False
         default:
         description: Optional map of events to timestamps
       username:
-        type: str
+        type: str_8-bit-leading
         repr: str
         required: True
         default: local
         description: Originating user's ID
       profiles:
-        type: list
+        type: str_16-bit-leading
         repr: list
         required: True
         default:

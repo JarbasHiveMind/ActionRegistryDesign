@@ -2,3 +2,8 @@ gender:
 lang_short:  # ISO 639-1 spec
 lang_long:  # BCP-47 spec
 client:
+str_terminated:
+str_4-bit-leading:
+str_8-bit-leading:
+str_16-bit-leading:
+str_32-bit-leading:
