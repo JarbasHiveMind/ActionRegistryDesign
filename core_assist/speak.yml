@@ -29,8 +29,8 @@ message:
       required: True
       default:
       description: Lowercased BCP 47 Language tag associated with `utterance` (i.e. en-us)
-    speaker:  # Optional mapping of response parameters
-      name:
+    responder_options:  # Optional mapping of response parameters
+      display_name:
         type: str_4-bit-leading
         repr: str
         required: False
@@ -48,7 +48,7 @@ message:
         required: False
         default:
         description: Requested gender for TTS synthesis
-      voice:
+      synthesizer_voice:
         type: str_4-bit-leading
         repr: str
         required: False
