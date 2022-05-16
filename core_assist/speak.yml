@@ -1,0 +1,144 @@
+name: speak
+names:
+  - speak
+description: event emitted by skills module and handled by audio module to generate and play back TTS
+message:
+  type: speak
+  data:
+    utterance:
+      type: str_terminated
+      repr: str
+      required: True
+      default:
+      description: Generated response to be spoken
+    expect_response:
+      type: bool
+      repr: bool
+      required: True
+      default: False
+      description: Boolean indicating if a user response is expected
+    meta:
+      type: str_16-bit-leading
+      repr: dict
+      required: False
+      default:
+      description: Optional mapping of keyword IDs to values
+    lang:
+      type: lang_long
+      repr: str
+      required: True
+      default:
+      description: Lowercased BCP 47 Language tag associated with `utterance` (i.e. en-us)
+    responder_options:  # Optional mapping of response parameters
+      display_name:
+        type: str_4-bit-leading
+        repr: str
+        required: False
+        default:
+        description: Name associated with generated response
+      language:
+        type: lang_long
+        repr: str
+        required: False
+        default:
+        description: Override language of response sent to the user
+      gender:
+        type: gender
+        repr: str  # "male" or "female"
+        required: False
+        default:
+        description: Requested gender for TTS synthesis
+      synthesizer_voice:
+        type: str_4-bit-leading
+        repr: str
+        required: False
+        default:
+        description: Requested TTS Voice
+  context:
+    ident:
+      type: str_8-bit-leading
+      repr: str
+      required: True
+      default:
+      description: Unique ID of this input event
+
+# Revisions overlay the `message` spec to provide additional information
+revisions:
+  mycroft:
+    context:
+      client_name:
+        type: str_8-bit-leading
+        repr: str
+        required: True
+        default:
+        description: Human-readable name to identify the module capturing this input
+      client:
+        type: client
+        repr: str
+        required: True
+        default: microphone
+        description: Classification of the input source (api, mobile, browser, microphone)
+      source:
+        type: str_8-bit-leading
+        repr: str
+        required: False
+        default:
+        description: Optional name of message originating module
+      destination:
+        type: str_8-bit-leading
+        repr: str
+        required: False
+        default: audio
+        description: Optional name of message intended target (None broadcasts all)
+  v1:
+    context:
+      client:
+        name:
+          type: str_8-bit-leading
+          repr: str
+          required: True
+          default:
+          description: Human-readable name to identify the module capturing this input
+        class:
+          type: client
+          repr: str
+          required: True
+          default: microphone
+          description: Classification of the input source (api, mobile, browser, microphone)
+        extras:
+          type: str_16-bit-leading
+          repr: dict
+          required: False
+          default:
+          description: Optional extra parameters related to client originating the interaction
+      routing:
+        source:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default:
+          description: Optional name of message originating module
+        destination:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default: audio
+          description: Optional name of message intended target (None broadcasts all)
+      timing:
+        type: str_16-bit-leading
+        repr: dict
+        required: False
+        default:
+        description: Optional map of events to timestamps
+      username:
+        type: str_8-bit-leading
+        repr: str
+        required: True
+        default: local
+        description: Originating user's ID
+      profiles:
+        type: str_16-bit-leading
+        repr: list
+        required: True
+        default:
+        description: List of user profile data for any users being spoken to, including originating user

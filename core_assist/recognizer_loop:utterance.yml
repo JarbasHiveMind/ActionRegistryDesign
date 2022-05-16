@@ -1,0 +1,106 @@
+name: recognizer_loop:utterance
+names:
+  - recognizer_loop:utterance
+description: event emitted by a client module for the skills module to handle user input
+message:
+  type: recognizer_loop:utterance
+  data:
+    utterances:
+      type: list
+      repr: list
+      required: True
+      default: []
+      description: List of possible transcribed user input
+    lang:
+      type: lang_long
+      repr: str
+      required: True
+      default:
+      description: Lowercased BCP 47 Language tag associated with `utterances` (i.e. en-us)
+  context:
+    ident:
+      type: str_8-bit-leading
+      repr: str
+      required: True
+      default:
+      description: Unique ID of this input event
+
+revisions:
+  mycroft:
+    context:
+      client_name:
+        type: str_8-bit-leading
+        repr: str
+        required: True
+        default:
+        description: Human-readable name to identify the module capturing this input
+        client:
+          type: client
+          repr: str
+          required: True
+          default: microphone
+          description: Classification of the input source (api, mobile, browser, microphone)
+        source:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default:
+          description: Optional name of message originating module
+        destination:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default: audio
+          description: Optional name of message intended target (None broadcasts all)
+  v1:
+    context:
+      client:
+        name:
+          type: str_8-bit-leading
+          repr: str
+          required: True
+          default:
+          description: Human-readable name to identify the module that captured this input
+        class:
+          type: client
+          repr: str
+          required: True
+          default: microphone
+          description: Classification of the input source (api, mobile, browser, microphone)
+        extras:
+          type: str_16-bit-leading
+          repr: dict
+          required: False
+          default:
+          description: Optional extra parameters related to client originating the interaction
+      routing:
+        source:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default:
+          description: Optional name of message originating module
+        destination:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default: audio
+          description: Optional name of message intended target (None broadcasts all)
+      timing:
+        type: str_16-bit-leading
+        repr: dict
+        required: False
+        default:
+        description: Optional map of events to timestamps
+      username:
+        type: str_8-bit-leading
+        repr: str
+        required: True
+        default: local
+        description: Originating user's ID
+      profiles:
+        type: str_16-bit-leading
+        repr: list
+        required: True
+        default:
+        description: List of user profile data for any users being spoken to, including originating user
