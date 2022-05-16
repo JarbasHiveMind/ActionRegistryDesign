@@ -1,0 +1,19 @@
+name: neon.clear_data
+names:
+  - neon.clear_data
+description: event emitted when a user requests deletion of stored data
+message:
+  type: neon.clear_data
+  data:
+    username:
+      type: str_8-bit-leading
+      repr: str
+      required: True
+      default:
+      description: user requesting data deletion
+    data_to_remove:
+      type: str_16-bit-leading
+      repr: list
+      required: True
+      default: []
+      description: list of requested data type enums to clear

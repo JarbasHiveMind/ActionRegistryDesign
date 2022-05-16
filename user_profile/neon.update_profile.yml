@@ -1,0 +1,56 @@
+name: neon.profile_update
+names:
+  - neon.profile_update
+description: event emitted by a skill requesting changes to a user's profile
+message:
+  type: neon.profile_update
+  data:
+    profile:
+      type: str_16-bit-leading
+      repr: dict
+      required: True
+      default:
+      description: Complete user profile with any changes applied
+
+revisions:
+  mycroft:
+    context:
+      source:
+        type: str_8-bit-leading
+        repr: str
+        required: False
+        default:
+        description: Optional name of message originating module
+      destination:
+        type: str_8-bit-leading
+        repr: str
+        required: False
+        default: audio
+        description: Optional name of message intended target (None broadcasts all)
+  v1:
+    context:
+      routing:
+        source:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default:
+          description: Optional name of message originating module
+        destination:
+          type: str_8-bit-leading
+          repr: str
+          required: False
+          default: audio
+          description: Optional name of message intended target (None broadcasts all)
+      username:
+        type: str_8-bit-leading
+        repr: str
+        required: True
+        default: local
+        description: Originating user's ID
+      profiles:
+        type: str_16-bit-leading
+        repr: list
+        required: True
+        default:
+        description: List of user profile data for any users being spoken to, including originating user
